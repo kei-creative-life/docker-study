@@ -75,6 +75,13 @@ bun run preview
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## 補足
+- hostsに設定
+```
+// Macの場合
+sudo vi /etc/hosts
+
+127.0.0.1 dev.local を追加
+```
 - backendコンテナとの通信確認
 ```
 docker exec -it app-nuxt-app-1 ping backend

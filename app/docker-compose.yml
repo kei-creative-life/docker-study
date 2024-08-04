@@ -1,6 +1,6 @@
 version: "3"
 services:
-  nuxt-app:
+  front:
     build: .
     ports:
       - "3000:3000"
@@ -13,7 +13,7 @@ services:
       - API_BASE_URL=http://backend:8000/api
     networks:
       - myapp-network
-
+  # MEMO: URLによって振り分けるコンテナを決めるためにNginxが必要
   nginx:
     image: nginx:alpine
     ports:
@@ -21,12 +21,12 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
-      - nuxt-app
+      - front
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
       - myapp-network
-
+# MEMO: バックエンドコンテナとの通信をするためにnetworkが必要
 networks:
   myapp-network:
     external: true
